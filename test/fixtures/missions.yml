@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  packet: MyString
+  victory: MyText
+  specialRules: MyText
+  tacticalTips: MyText
+  map: MyString
+  objective: MyString
+
+two:
+  name: MyString
+  packet: MyString
+  victory: MyText
+  specialRules: MyText
+  tacticalTips: MyText
+  map: MyString
+  objective: MyString
