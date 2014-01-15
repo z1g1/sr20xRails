@@ -1,4 +1,6 @@
 class MissionsController < ApplicationController
+  before_filter :authenticate_user!
+
 	def new
 		@mission = Mission.new
 	end
@@ -14,10 +16,12 @@ class MissionsController < ApplicationController
 	end
 	
 	def edit
+    authorize! :index, @user, :message => 'Not authorized as an administrator.'		
 	  @mission = Mission.find(params[:id])
 	end
 
 	def update
+    authorize! :index, @user, :message => 'Not authorized as an administrator.'		
 		@mission = Mission.find(params[:id])
 	
 		if @mission.update(params[:mission].permit(:packet, :name, :victory, :specialRules, :tacticalTips, :map, :objective))
@@ -28,6 +32,7 @@ class MissionsController < ApplicationController
 	end		
 
 	def destroy
+    authorize! :index, @user, :message => 'Not authorized as an administrator.'		
 		@mission = Mission.find(params[:id])
 	  @mission.destroy
  

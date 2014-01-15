@@ -7,7 +7,12 @@
 </div>
 <% @missions.each do |mission| %>
 <div class="row">
-		<div class="col-md-2"><h3><%= link_to mission.name,mission_path(mission.id) %></h3> (<%= link_to "edit", edit_mission_path(mission) %>)</div>
+		<div class="col-md-2">
+			<h3><%= link_to mission.name,mission_path(mission.id) %></h3>
+		  <% if can? :update, mission %>
+				(<%= link_to "edit", edit_mission_path(mission) %>)
+			<% end %>
+		</div>	
 		<div class="col-md-8"><%= mission.specialRules.gsub('&lt;','<').gsub('&gt;','>').html_safe %></div>
 		<div class="col-md-2"><img class="img-thumbnail" src="http://sr20x.com/static/img/<%= mission.map %>" alt="<%= mission.name %>"></img></div>
 </div>
