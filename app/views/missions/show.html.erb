@@ -2,7 +2,7 @@
 
 <div class="row">
 
-	<div class="col-md-8">
+	<div class="span8">
 		<h2>Victory</h2>
 		<%= @mission.victory.gsub('&lt;','<').gsub('&gt;','>').html_safe %>
 		<h2>Special Rules</h2>
@@ -10,13 +10,13 @@
 		<h2>Tactical Tip</h2>
 		<%= @mission.tacticalTips.gsub('&lt;','<').gsub('&gt;','>').html_safe %>
 	</div>
-	<div class="col-md-4">
+	<div class="span4">
 		<img src="http://sr20x.com/static/img/<%= @mission.map %>"></img>
 	</div>
 </div>
 <% if @mission.objective? %>
 	<div class="row">
-		<div class="col-md-4 col-md-offset-8">
+		<div class="span4 offset-8">
 	    <img src="http://sr20x.com/static/img/<%= @mission.objective %>"></img>
 		</div>	
 	</div>
