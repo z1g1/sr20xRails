@@ -1,7 +1,8 @@
-RailsSr20x::Application.routes.draw do
-  root :to => "visitors#new"
-  
-	devise_for :users
-	resources :users
-	resources :missions
+Rails3BootstrapDeviseCancan::Application.routes.draw do
+  authenticated :user do
+    root :to => 'home#index'
+  end
+  root :to => "home#index"
+  devise_for :users
+  resources :users
 end
