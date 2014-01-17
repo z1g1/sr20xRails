@@ -1,4 +1,37 @@
-<h3>Home</h3>
-<% @users.each do |user| %>
-  <p>User: <%=link_to user.name, user %></p>
+<% content_for :title do %>
+Mission Generator
+<% end %>
+
+
+<h3>Steamroller Mission Generator</h3>
+
+	<div class="row">
+		<div class="span8">	
+			<select id="missionList">
+				<option value="">Select Mission</option>
+			</slect>
+		</div>
+	</div>	
+	<div class="row">
+
+		<div class="span8">
+			<h4>Mission Name</h4>
+			Mission Name 
+			<h4>Victory Conditions</h4>
+			Victory Conditions 
+			<h4>Special Rules</h4>
+			Special Rules
+			<h4>Tactical Tip</h4>
+			Tactical Tips
+		</div>
+		<div class="span4">
+			<!--<img src="http://sr20x.com/static/img/"></img>-->
+		</div>
+	</div>
+	<div class="row">
+		<div class="span4 offset-8">
+    <!--<img src="http://sr20x.com/static/img/"></img>-->
+	</div>	
+<% content_for :head do %>
+
 <% end %>
