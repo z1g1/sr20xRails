@@ -2,36 +2,87 @@
 Mission Generator
 <% end %>
 
+<% content_for :head do %>
+<script type="text/javascript">
+	function PrintMission(MissionNumber)
+	{
+		var MissionList = new Array()
+
+		var i = 1
+
+		var ImageSource = "http://sr20x.com/static/img/"
+
+		MissionList.push("Select Mission");
+
+		<% Mission.all.each_with_index do |mission, index| %>
+			MissionList.push(new Array());
+			MissionList[i].push("<%= mission.name %>");
+			//MissionList[i].push("<%= mission.victory %>");
+			//MissionList[i].push("<%= mission.specialRules %>");
+			//MissionList[i].push("<%= mission.tacticalTips %>");
+			MissionList[i].push('<%= mission.victory.html_safe %>');
+			MissionList[i].push("<%= mission.specialRules.html_safe  %>");
+			MissionList[i].push("<%= mission.tacticalTips.html_safe %>");
+			MissionList[i].push('<img src="'+ImageSource+'<%= mission.map %>"></img>');
+			MissionList[i].push('<img src="'+ImageSource+'<%= mission.objective %>"></img>');
+
+			i++
+		<% end %>
+
+		document.getElementById("MissionName").innerHTML=MissionList[MissionNumber][0]; 
+		document.getElementById("MissionVictoryConditions").innerHTML=MissionList[MissionNumber][1]; 
+		document.getElementById("MissionSpecialRules").innerHTML=MissionList[MissionNumber][2]; 
+		document.getElementById("MissionTacticalTips").innerHTML=MissionList[MissionNumber][3]; 
+		document.getElementById("MissionMap").innerHTML=MissionList[MissionNumber][4]; 
+		document.getElementById("MisionObjective").innerHTML=MissionList[MissionNumber][5]; 
+	}
+	
+	function SelectMission()
+	{
+		var SelectedMission = document.getElementById("missionList").value;
+
+		PrintMission(SelectedMission);	
+	}
+</script>
+<% end %>
 
 <h3>Steamroller Mission Generator</h3>
 
 	<div class="row">
 		<div class="span8">	
-			<select id="missionList">
+			<select id="missionList" onChange="SelectMission()">
 				<option value="">Select Mission</option>
-			</slect>
+				<option value="1">Destruction</option>
+				<option value="2">Supply and Demand</option>
+				<option value="3">Balance of Power</option>
+				<option value="4">Process of Elimination</option>
+				<option value="5">Close Quarters</option>
+				<option value="6">Two Fronts</option>
+				<option value="7">Incoming</option>
+				<option value="8">Rally Point</option>
+				<option value="9">Incursion</option>
+				<option value="10">Outflank</option>
+				<option value="11">Into the Breach</option>
+				<option value="12">Fire Support</option>
+			</select>
 		</div>
 	</div>	
 	<div class="row">
 
 		<div class="span8">
-			<h4>Mission Name</h4>
-			Mission Name 
-			<h4>Victory Conditions</h4>
-			Victory Conditions 
-			<h4>Special Rules</h4>
-			Special Rules
-			<h4>Tactical Tip</h4>
-			Tactical Tips
+			<h4 id="MissionName">Mission Name</h4>
+			<h5>Victory Conditions</h5>
+			<div id="MissionVictoryConditions">****</div>
+			<h5>Special Rules</h5>
+			<div id="MissionSpecialRules">****</div>
+			<h5>Tactical Tip</h5>
+			<div id="MissionTacticalTips">****</div>
 		</div>
 		<div class="span4">
-			<!--<img src="http://sr20x.com/static/img/"></img>-->
+			<div id="MissionMap">****</div>
 		</div>
 	</div>
 	<div class="row">
 		<div class="span4 offset-8">
-    <!--<img src="http://sr20x.com/static/img/"></img>-->
+    <div id="MisionObjective">****</div>
 	</div>	
-<% content_for :head do %>
-
-<% end %>
