@@ -1,11 +1,11 @@
 class MissionsController < ApplicationController
-  before_filter :authenticate_user!
 
 	def new
 		@mission = Mission.new
 	end
 	
 	def create
+    authorize! :index, @user, :message => 'Not authorized as an administrator.'		
 	  @mission = Mission.new(mission_params)
 	  
 		if @mission.save
@@ -25,7 +25,6 @@ class MissionsController < ApplicationController
 		@mission = Mission.find(params[:id])
 	
 		if @mission.update(params[:mission].permit(:packet, :name, :victory, :specialRules, :tacticalTips, :map, :objective))
-			redirect_to @mission
 	  else
 			render 'edit'
 	  end
