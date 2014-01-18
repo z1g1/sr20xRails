@@ -29,7 +29,7 @@ class CastersController < ApplicationController
 	def update
 	  @caster = Caster.find(params[:id])
  
-	  if @caster.update(params[:caster].permit(:title, :text))
+	  if @caster.update_attributes(params[:caster].permit(:title, :faction_id))
 	    redirect_to @caster
 	  else
 		  render 'edit'

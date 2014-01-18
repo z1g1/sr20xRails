@@ -36,7 +36,7 @@ class FactionsController < ApplicationController
 	def update_attribute
 	  @faction = Faction.find(params[:id])
  
-	  if @faction.update(params[:faction].permit(:logo, :system, :title ))
+	  if @faction.update_attributes(params[:faction].permit(:logo, :system, :title ))
 	    redirect_to @faction
 	  else
 		  render 'edit'

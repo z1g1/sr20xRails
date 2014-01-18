@@ -24,7 +24,7 @@ class MissionsController < ApplicationController
     authorize! :index, @user, :message => 'Not authorized as an administrator.'		
 		@mission = Mission.find(params[:id])
 	
-		if @mission.update(params[:mission].permit(:packet, :name, :victory, :specialRules, :tacticalTips, :map, :objective))
+		if @mission.update_attributes(params[:mission].permit(:packet, :name, :victory, :specialRules, :tacticalTips, :map, :objective))
 	  else
 			render 'edit'
 	  end
