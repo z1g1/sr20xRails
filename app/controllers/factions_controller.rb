@@ -5,6 +5,7 @@ class FactionsController < ApplicationController
 
 	def show
 		@faction = Faction.find(params[:id])
+		@casters = Caster.where("faction_id = ?", params[:id])
 	end
 
 end

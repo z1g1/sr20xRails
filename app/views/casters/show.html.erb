@@ -1,0 +1,33 @@
+<% content_for :title do %>
+<%= @caster.title %>
+<% end %>
+<div class="row">
+	<div class="span12">
+		<%= link_to 'Factions', Faction %> > <%= link_to @faction.title,faction_path(@faction.id) %> > <%= @caster.title %>
+	</div>
+</div>
+
+<h3><%= @caster.title %></h3>
+
+<div class="row">
+	<div class="span4">
+		<h4>List Title</h4>
+	</div>
+	<div class="span4">
+		<h4>Created By</h4>
+	</div>
+	<div class="span4">
+		<h4>Created On</h4>
+	</div>
+</div>
+<div class="row">
+	<div class="span4">
+		Recent Lists
+	</div>
+	<div class="span4">
+		Created By
+	</div>
+	<div class="span4">
+		Created On
+	</div>
+</div>

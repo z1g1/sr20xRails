@@ -11,7 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 201401762328453) do
+ActiveRecord::Schema.define(:version => 201401762328454) do
+
+  create_table "casters", :force => true do |t|
+    t.string   "title"
+    t.integer  "faction_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "casters", ["faction_id"], :name => "index_casters_on_faction_id"
 
   create_table "factions", :force => true do |t|
     t.string   "title"

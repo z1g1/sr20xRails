@@ -18,11 +18,20 @@
 	</div>
 </div>
 <div class="row">
-	<div class="span2 offset1">
+	<div class="span4">
 		<h4>Faction</h4>
 	</div>
 	<div class="span8">
 		<h4>Recent Lists</h4>
 	</div>
-	<!--<div class="span2"><h2>Map</h2></div>-->
 </div>
+<% @casters.each do |caster| %>
+<div class="row">
+	<div class="span4">
+		<%= link_to caster.title,caster_path(caster.id) %>
+	</div>
+	<div class="span8">
+		Recent Lists
+	</div>
+</div>
+<% end %>
