@@ -4,6 +4,69 @@ Add New List
 
 <% content_for :head do %>
 <script type="text/javascript">
+	//create an empty arry to contain sub arrays for each of the casters in the model Casters
+  var casters = new Array();
+
+  //drop into the .erd template language to access the model
+  <% Caster.all.each do |caster| %>
+    //for each caster in casters create a sub array with the faction_id, caster_name, caster_id
+		casters.push(new Array(<%= caster.faction_id %>, '<%= caster.title %>', <%= caster.id %>));
+	<% end %>
+  //function which is called whenever the list_faction_id select list changes
+  function selectionFaction()
+  {
+    //select the list_faction_id select list from the DOM
+    var selectedFaction = document.getElementById("list_faction_id").value;
+
+    //select the list_caster_id select list from the DOM
+    var options = document.getElementById("list_caster_id");
+
+    //clear all options from the list_caser select box each time the function is called
+    options.options.length=0;
+
+    //counter to be used in the caster in casters for loop
+    var i = 0
+
+    //counter to be used in the option in newOptions for loop
+    var j = 0
+
+    //new array to contain all of the sub arrays which match the selected faciton in list_faction_id
+    var newOptions = new Array();
+
+    //for each caster in the Casters modle test for a match on faction ID
+    for (caster in casters)
+    {
+      //if the faction id matches
+      if ( casters[i][0] == selectedFaction)
+      {
+        //add a new sub arry to the newOptions array which contanis the caster_id and caster_title
+        newOptions.push(new Array(casters[i][2],casters[i][1]));
+      }
+
+      //increment the i counter
+      i++
+    }
+
+    //for each caster which was found to match add an option
+    for (option in newOptions)
+    {
+      //create a new opt varrible each iteration for the options
+	         var opt = document.createElement('option');
+
+       //the value is the caster_id
+       opt.value = (newOptions[j][0]);
+
+       //the label is caster_title
+       opt.innerHTML = (newOptions[j][1]);
+
+       //append the option to list_caster_id
+       options.appendChild(opt);
+
+       //increment the j counter
+       j++
+     }
+   }
+
 </script>
 <% end %>
 
