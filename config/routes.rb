@@ -8,4 +8,5 @@ Rails3BootstrapDeviseCancan::Application.routes.draw do
   resources :missions
   resources :factions
   resources :casters
+  resources :lists
 end

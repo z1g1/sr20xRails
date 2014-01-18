@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 201401762328454) do
+ActiveRecord::Schema.define(:version => 201401762328455) do
 
   create_table "casters", :force => true do |t|
     t.string   "title"
@@ -29,6 +29,21 @@ ActiveRecord::Schema.define(:version => 201401762328454) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "lists", :force => true do |t|
+    t.string   "title"
+    t.text     "body"
+    t.string   "size"
+    t.integer  "faction_id"
+    t.integer  "caster_id"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "lists", ["caster_id"], :name => "index_lists_on_caster_id"
+  add_index "lists", ["faction_id"], :name => "index_lists_on_faction_id"
+  add_index "lists", ["user_id"], :name => "index_lists_on_user_id"
 
   create_table "missions", :force => true do |t|
     t.string   "name"
