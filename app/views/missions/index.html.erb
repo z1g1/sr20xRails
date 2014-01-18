@@ -9,6 +9,14 @@ Mission Generator
 </div>
 
 <h3>List All Missions </h3>
+<% if can? :update, @missions %>
+	<div class="row">
+		<div class="span12">
+			<%= link_to "New Mission",new_mission_path,"class" => "btn btn-success" %>
+		</div>
+	</div>
+<% end %>
+
 
 <div class="row">
 	<div class="span2"><h2>Mission</h2></div>
@@ -20,7 +28,7 @@ Mission Generator
 		<div class="span2">
 			<h3><%= link_to mission.name,mission_path(mission.id) %></h3>
 		  <% if can? :update, mission %>
-				<%= link_to 'Edit', edit_mission_path(mission),"class" => "btn btn-success" %>
+				<%= link_to 'Edit', edit_mission_path(mission),"class" => "btn btn-primary" %>
 				<%= link_to 'Destroy', mission_path(mission), method: :delete, data: { confirm: 'Are you sure?'},"class"=> "btn btn-danger" %>
 			<% end %>
 		</div>	

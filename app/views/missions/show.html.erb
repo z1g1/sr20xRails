@@ -10,6 +10,16 @@
 
 <h3>Mission #<%= @mission.id %> <%= @mission.name %></h3>
 
+<% if can? :update, @mission %>
+	<div class="row">
+		<div class="span2">
+			<%= link_to "Edit Mission",edit_mission_path,"class" => "btn btn-success" %>
+		</div>
+		<div class="span2">
+			<%= link_to 'Destroy', faction_path(@mission), method: :delete, data: { confirm: 'Are you sure?'},"class"=> "btn btn-danger" %>
+		</div>
+	</div>
+<% end %>
 <div class="row">
 
 	<div class="span8">

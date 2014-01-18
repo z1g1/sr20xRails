@@ -8,17 +8,21 @@ Caster Index
 </div>
 
 <h3>Casters Index</h3>
-<div class="row">
-	<div class="span12">
-		<%= link_to "New Caster",new_caster_path,"class" => "btn btn-success" %>
+<% if can? :update, @casters %>
+	<div class="row">
+		<div class="span12">
+			<%= link_to "New Caster",new_caster_path,"class" => "btn btn-success" %>
+		</div>
 	</div>
-</div>
+<% end %>
 
 <div class="row">
 	<div class="span5"><h4>Caster</h4></div>
 	<div class="span4"><h4>Faction</h4></div>
-	<div class="span1"><h4>Destroy</h4></div>
-	<div class="span1"><h4>Edit</h4></div>
+	<% if can? :update, @casters %>
+		<div class="span1"><h4>Destroy</h4></div>
+		<div class="span1"><h4>Edit</h4></div>
+	<% end %>
 </div>
 <% @casters.each do |caster| %>
 <div class="row">
@@ -28,11 +32,13 @@ Caster Index
 		<div class="span4">
 			<%= link_to Faction.find(caster.faction_id).title,faction_path(caster.faction_id) %>
 		</div>
-		<div class="span1">
-			<%= link_to 'Destroy', caster_path(caster), method: :delete, data: { confirm: 'Are you sure?'},"class"=> "btn btn-danger" %>
-		</div>
-		<div class="span1">
-			<%= link_to 'Edit', edit_caster_path(caster),"class"=> "btn btn-primary" %>
-		</div>
+		<% if can? :update, @casters %>
+			<div class="span1">
+				<%= link_to 'Destroy', caster_path(caster), method: :delete, data: { confirm: 'Are you sure?'},"class"=> "btn btn-danger" %>
+			</div>
+			<div class="span1">
+				<%= link_to 'Edit', edit_caster_path(caster),"class"=> "btn btn-primary" %>
+			</div>
+		<% end %>
 </div>
 <% end %>
