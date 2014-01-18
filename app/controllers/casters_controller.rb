@@ -1,16 +1,22 @@
 class CastersController < ApplicationController
 	def new
-		@caster = Caster.new
+		#@caster = Caster.new
+		@factions = Faction.all
 	end
 
 	def create 
-		  @caster = Caster.new(caster_params)
+		#render text: params[:caster].inspect		
+	  @caster = Caster.new(caster_params)
+		
+		@caster.save
+	  redirect_to @caster
+		#@caster = Caster.new(caster_params)
  
-			if @caster.save
-				redirect_to @caster
-		  else
-		    render 'new'
-		  end
+		#if @caster.save
+		#	redirect_to @caster
+		#else
+		#  render 'new'
+		#end
 	end
 
 	def destroy
@@ -32,8 +38,9 @@ class CastersController < ApplicationController
 		@caster = Caster.find(params[:id])
 		@faction = Faction.find(@caster.faction_id)
 	end
-	private
+
+private
   def caster_params
-    params.require(:caster).permit(:title, :faction_id)
+    params.require(:caster).permit(:title,:faction_id)
   end
 end

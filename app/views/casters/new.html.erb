@@ -9,5 +9,33 @@ Add New Caster
 
 <h3>Add New Caster</h3>
 
-<%= render 'form' %>
+<%= form_for :caster, url: casters_path do |f| %>
+<div class="row">
+	<div class="span2">
+		<%= f.label :title, "Caster Name" %>
+	</div>
+	<div class="span4">
+		<%= f.text_field :title %>
+	</div>
+	<div class="span6">
+		<!--Grid Placeholder -->
+	</div>
+</div>
+<div class="row">
+	<div class="span2">
+		<%= f.label :faction_id, "Faction"%>
+	</div>
+	<div class="span4">
+		<%= f.collection_select :faction_id, @factions, :id, :title, include_blank: true %>
+	</div>
+	<div class="span6">
+		<!--Grid Placeholder -->
+	</div>
+</div>
+<div class="row">
+	<div class="span2">
+		<%= f.submit %>
+	</div>
+</div>
+<% end %>
 
