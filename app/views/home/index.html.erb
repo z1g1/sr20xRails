@@ -6,28 +6,7 @@ Mission Generator
 <script type="text/javascript">
 	function PrintMission(MissionNumber)
 	{
-		var MissionList = new Array()
-
-		var i = 1
-
-		var ImageSource = "http://sr20x.com/static/img/"
-
-		MissionList.push("Select Mission");
-
-		<% Mission.all.each_with_index do |mission, index| %>
-			MissionList.push(new Array());
-			MissionList[i].push("<%= mission.name %>");
-			//MissionList[i].push("<%= mission.victory %>");
-			//MissionList[i].push("<%= mission.specialRules %>");
-			//MissionList[i].push("<%= mission.tacticalTips %>");
-			MissionList[i].push('<%= mission.victory.html_safe %>');
-			MissionList[i].push("<%= mission.specialRules.html_safe  %>");
-			MissionList[i].push("<%= mission.tacticalTips.html_safe %>");
-			MissionList[i].push('<img src="'+ImageSource+'<%= mission.map %>"></img>');
-			MissionList[i].push('<img src="'+ImageSource+'<%= mission.objective %>"></img>');
-
-			i++
-		<% end %>
+		var MissionList = LoadMissionArray()
 
 		document.getElementById("MissionName").innerHTML=MissionList[MissionNumber][0]; 
 		document.getElementById("MissionVictoryConditions").innerHTML=MissionList[MissionNumber][1]; 
@@ -36,12 +15,59 @@ Mission Generator
 		document.getElementById("MissionMap").innerHTML=MissionList[MissionNumber][4]; 
 		document.getElementById("MisionObjective").innerHTML=MissionList[MissionNumber][5]; 
 	}
+
+	function LoadMissionArray()
+	{
+		var i = 1
+
+		var ImageSource = "http://sr20x.com/static/img/"
+
+		var MissionList = new Array()
+
+		MissionList.push("Select Mission");
+
+		<% Mission.all.each_with_index do |mission, index| %>
+			MissionList.push(new Array());
+			MissionList[i].push("<%= mission.name %>");
+			MissionList[i].push('<%= mission.victory.html_safe %>');
+			MissionList[i].push("<%= mission.specialRules.html_safe  %>");
+			MissionList[i].push("<%= mission.tacticalTips.html_safe %>");
+			MissionList[i].push('<img src="'+ImageSource+'<%= mission.map %>"></img>');
+			MissionList[i].push('<img src="'+ImageSource+'<%= mission.objective %>"></img>');
+
+			i++
+		<% end %>
 	
+		return MissionList
+	}	
+	
+	function RandomMission()
+	{
+		var MissionNumber = Math.floor(Math.random()*12);
+
+    if (MissionNumber == 0 || MissionNumber > 12)
+    {
+        RandomMission()
+    }
+
+		PrintMission(MissionNumber);
+	}
 	function SelectMission()
 	{
 		var SelectedMission = document.getElementById("missionList").value;
 
 		PrintMission(SelectedMission);	
+	}
+
+	function ToggelSelect()
+	{
+		document.getElementById("GenerateButtonRow").className = "span8 hidden"
+    document.getElementById("SelectListRow").className = "span8"
+	}
+	function ToggelGenerate()
+	{
+		document.getElementById("GenerateButtonRow").className = "span8"
+    document.getElementById("SelectListRow").className = "span8 hidden"
 	}
 </script>
 <% end %>
@@ -49,7 +75,10 @@ Mission Generator
 <h3>Steamroller Mission Generator</h3>
 
 	<div class="row">
-		<div class="span8">	
+		<div class="span8" id="GenerateButtonRow">
+			<button class="btn" id="GenerateMission" onClick="RandomMission()">Random Mission</button> <a id="ToggleSelect" onClick="ToggelSelect()">Select Mission</a>
+		</div>	
+		<div class="span8 hidden" id="SelectListRow">	
 			<select id="missionList" onChange="SelectMission()">
 				<option value="">Select Mission</option>
 				<option value="1">Destruction</option>
@@ -65,6 +94,7 @@ Mission Generator
 				<option value="11">Into the Breach</option>
 				<option value="12">Fire Support</option>
 			</select>
+			<a id="ToggleGenerate" onClick="ToggelGenerate()">Roll Random Mission</a>
 		</div>
 	</div>	
 	<div class="row">
