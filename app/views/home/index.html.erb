@@ -73,10 +73,12 @@ Mission Generator
 <% end %>
 
 <h3>Steamroller Mission Generator</h3>
-
 	<div class="row">
+		<div class="span1 offset8 hidden">
+			<img onLoad="RandomMission()" src="http://sr20x.com/static/img/Steamroller.png"></img> 
+		</div>
 		<div class="span8" id="GenerateButtonRow">
-			<button class="btn" id="GenerateMission" onClick="RandomMission()">Random Mission</button> <a id="ToggleSelect" onClick="ToggelSelect()">Select Mission</a>
+			<button class="btn" id="GenerateMission" onClick="RandomMission()">Random Mission</button> <a id="ToggleSelect" onClick="ToggelSelect()" >Select Mission</a>
 		</div>	
 		<div class="span8 hidden" id="SelectListRow">	
 			<select id="missionList" onChange="SelectMission()">
@@ -113,6 +115,6 @@ Mission Generator
 		</div>
 	</div>
 	<div class="row">
-		<div class="span4 offset-8">
+		<div class="span4 offset8">
     <div id="MisionObjective">****</div>
 	</div>	
