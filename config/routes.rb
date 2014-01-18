@@ -6,4 +6,5 @@ Rails3BootstrapDeviseCancan::Application.routes.draw do
   devise_for :users
   resources :users
   resources :missions
+  resources :factions
 end

@@ -1,0 +1,28 @@
+<% content_for :title do %>
+Faction Index
+<% end %>
+<div class="row">
+	<div class="span12">
+		Factions > 
+	</div>
+</div>
+
+<h3>Faction Index</h3>
+
+<div class="row">
+	<div class="span2 offset1"><h4>Faction</h4></div>
+	<!--<div class="span8"><h2>Special Rules</h2></div>-->
+	<!--<div class="span2"><h2>Map</h2></div>-->
+</div>
+<% @factions.each do |faction| %>
+<div class="row">
+		<div class="span1">
+				<img class="img-thumbnail" src="http://sr20x.com/static/img/<%= faction.logo %>" alt="<%= faction.title %>"></img>
+		</div>
+		<div class="span3">
+				<h5><%= link_to faction.title,faction_path(faction.id) %></h5>
+		</div>	
+		<div class="span4"></div>
+		<div class="span2"></div>
+</div>
+	<% end %>

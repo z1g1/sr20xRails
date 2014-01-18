@@ -1,13 +1,23 @@
-<h1>Mission #<%= @mission.id %> <%= @mission.name %></h1>
+<% content_for :title do %>
+<%= @mission.name %>
+<% end %>
+
+<div class="row">
+	<div class="span12">
+		<%= link_to 'Missions', Mission %> >	<%= @mission.name %>
+	</div>
+</div>
+
+<h3>Mission #<%= @mission.id %> <%= @mission.name %></h3>
 
 <div class="row">
 
 	<div class="span8">
-		<h2>Victory</h2>
+		<h4>Victory</h4>
 		<%= @mission.victory.gsub('&lt;','<').gsub('&gt;','>').html_safe %>
-		<h2>Special Rules</h2>
+		<h4>Special Rules</h4>
 		<%= @mission.specialRules.gsub('&lt;','<').gsub('&gt;','>').html_safe %>
-		<h2>Tactical Tip</h2>
+		<h4>Tactical Tip</h4>
 		<%= @mission.tacticalTips.gsub('&lt;','<').gsub('&gt;','>').html_safe %>
 	</div>
 	<div class="span4">
@@ -16,7 +26,7 @@
 </div>
 <% if @mission.objective? %>
 	<div class="row">
-		<div class="span4 offset-8">
+		<div class="span4 offset8">
 	    <img src="http://sr20x.com/static/img/<%= @mission.objective %>"></img>
 		</div>	
 	</div>
