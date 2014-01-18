@@ -25,7 +25,7 @@ Mission Generator
 		var MissionList = new Array()
 
 		MissionList.push("Select Mission");
-
+       
 		<% Mission.all.each_with_index do |mission, index| %>
 			MissionList.push(new Array());
 			MissionList[i].push("<%= mission.name %>");
@@ -95,6 +95,7 @@ Mission Generator
 				<option value="10">Outflank</option>
 				<option value="11">Into the Breach</option>
 				<option value="12">Fire Support</option>
+				<option value="13">Deathmatch (Hardcore)</option>
 			</select>
 			<a id="ToggleGenerate" onClick="ToggelGenerate()">Roll Random Mission</a>
 		</div>

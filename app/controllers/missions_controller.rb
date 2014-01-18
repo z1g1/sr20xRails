@@ -1,7 +1,7 @@
 class MissionsController < ApplicationController
 
 	def index
-		@missions = Mission.where("packet = 'Standard' AND created_at > '2013'")
+		@missions = Mission.where("created_at > '2013'")
 	end
 
 	def show

@@ -16,7 +16,9 @@
 	</div>
 	<div class="row">
 		<div class="span2"><%= f.label :packet %></div>
-		<div class="span10"><%= f.text_field :packet %></div>
+		<div class="span10">
+			<%= f.select :packet, options_for_select([["Standard","Standard"],["Harcore","Hardcore"],["Masters","Masters"]]) %>
+		</div>
 	</div>
 	<div class="row">
 		<div class="span2"><%= f.label :victory, "Victory Conditions" %></div>
