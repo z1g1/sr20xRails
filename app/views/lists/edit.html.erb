@@ -1,0 +1,14 @@
+<% content_for :title do %>
+Edit <%= @list.title %>
+<% end %>
+
+
+<div class="row">
+	<div class="span12">
+		<%= link_to 'Lists', List %> > <%= link_to @author.name, user_path(@author.id) %> > Edit <%= @list.title %> 
+	</div>
+</div>
+
+<h3>Edit <%= @list.title %></h3>
+
+<%= render 'form' %>
