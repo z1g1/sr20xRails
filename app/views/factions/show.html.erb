@@ -28,21 +28,24 @@
 		View recent lists:
 	</div>
 </div>
-<div class="row">
-	<div class="span4">
-		<h4>Faction</h4>
-	</div>
-	<div class="span8">
-		<h4>Recent Lists</h4>
-	</div>
-</div>
+<table class="table table-striped">
+<tr>
+	<th><h4>Faction</h4></th>
+	<th><h4>How Many Lists</h4></th>
+	<th><h4>Recent Lists</h4></th>
+</tr>
 <% @casters.each do |caster| %>
-<div class="row">
-	<div class="span4">
+<tr>
+	<td>
 		<%= link_to caster.title,caster_path(caster.id) %>
-	</div>
-	<div class="span8">
-		Recent Lists
-	</div>
-</div>
+	</td>
+	<td>
+		<%= List.where("caster_id = ?", caster.id).count %>
+	</td>
+	<td>
+		<% @RecentList = List.where("caster_id = ?", caster.id).each do |list| %>
+			<%= list.title %>
+		<% end %>
+	</td>
+</tr>
 <% end %>

@@ -17,32 +17,40 @@ Faction Index
 	</div>
 <% end %> 
 
-<div class="row">
-	<div class="span4"><h4>Faction</h4></div>
-	<div class="span3"><h4>Recent Lists</h4></div>
-	<div class="span3"><h4>Total Lists</h4></div>
+<table class="table table-striped">
+<tr>
+	<th><h4>Faction</h4></th>
+	<th><h4>Total Lists</h4></th>
 	<% if can? :update, @factions %>
-		<div class="span1"><h4>Destory</h4></div>
-		<div class="span1"><h4>Edit</h4></div>
+		<th><h4>Destory</h4></th>
+		<th><h4>Edit</h4></th>
+	<% else %>
+		<th></th>
+		<th></th>
 	<% end %>
-</div>
+</tr>
 <% @factions.each do |faction| %>
-<div class="row">
-		<div class="span1">
-				<img class="img-thumbnail" src="http://sr20x.com/static/img/<%= faction.logo %>" alt="<%= faction.title %>"></img>
-		</div>
-		<div class="span3">
-				<h5><%= link_to faction.title,faction_path(faction.id) %></h5>
-		</div>	
-		<div class="span3">Most Recent List</div>
-		<div class="span3">How Many Lists</div>
+<tr>
+		<td>
+			<div class="row">
+				<div class="span1">
+					<img class="img-thumbnail" src="http://sr20x.com/static/img/<%= faction.logo %>" alt="<%= faction.title %>"></img>
+				</div>
+				<div>
+					<h5><%= link_to faction.title,faction_path(faction.id) %></h5>
+				</div>
+			</div>
+		</td>	
+		<td>
+			<%= List.where("faction_id = ?", faction.id).count %>
+		</td>
 		<% if can? :update, @factions %>
-			<div class="span1">
+			<td>
 				<%= link_to 'Destroy', faction_path(faction), method: :delete, data: { confirm: 'Are you sure?'},"class"=> "btn btn-danger" %>
-			</div>
-			<div class="span1">
+			</td>
+			<td>
 				<%= link_to 'Edit', edit_faction_path(faction),"class"=> "btn btn-primary" %>
-			</div>
+			</td>
 		<% end %>
-</div>
+</tr>
 <% end %>
