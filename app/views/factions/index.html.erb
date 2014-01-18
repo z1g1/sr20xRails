@@ -10,9 +10,17 @@ Faction Index
 <h3>Faction Index</h3>
 
 <div class="row">
-	<div class="span2 offset1"><h4>Faction</h4></div>
-	<!--<div class="span8"><h2>Special Rules</h2></div>-->
-	<!--<div class="span2"><h2>Map</h2></div>-->
+	<div class="span12">
+		<%= link_to "New Faction",new_faction_path,"class" => "btn btn-success" %>
+	</div>
+</div>
+
+<div class="row">
+	<div class="span4"><h4>Faction</h4></div>
+	<div class="span3"><h4>Recent Lists</h4></div>
+	<div class="span3"><h4>Total Lists</h4></div>
+	<div class="span1"><h4>Destory</h4></div>
+	<div class="span1"><h4>Edit</h4></div>
 </div>
 <% @factions.each do |faction| %>
 <div class="row">
@@ -22,7 +30,13 @@ Faction Index
 		<div class="span3">
 				<h5><%= link_to faction.title,faction_path(faction.id) %></h5>
 		</div>	
-		<div class="span4"></div>
-		<div class="span2"></div>
+		<div class="span3">Most Recent List</div>
+		<div class="span3">How Many Lists</div>
+		<div class="span1">
+			<%= link_to 'Destroy', faction_path(faction), method: :delete, data: { confirm: 'Are you sure?'},"class"=> "btn btn-danger" %>
+		</div>
+		<div class="span1">
+			<%= link_to 'Edit', edit_faction_path(faction),"class"=> "btn btn-primary" %>
+		</div>
 </div>
-	<% end %>
+<% end %>

@@ -8,11 +8,17 @@ Caster Index
 </div>
 
 <h3>Casters Index</h3>
+<div class="row">
+	<div class="span12">
+		<%= link_to "New Caster",new_caster_path,"class" => "btn btn-success" %>
+	</div>
+</div>
 
 <div class="row">
 	<div class="span5"><h4>Caster</h4></div>
 	<div class="span4"><h4>Faction</h4></div>
-	<!--<div class="span2"><h2>Map</h2></div>-->
+	<div class="span1"><h4>Destroy</h4></div>
+	<div class="span1"><h4>Edit</h4></div>
 </div>
 <% @casters.each do |caster| %>
 <div class="row">
@@ -20,7 +26,13 @@ Caster Index
 				<h5><%= link_to caster.title,caster_path(caster.id) %></h5>
 		</div>	
 		<div class="span4">
-			<%= Faction.find(caster.faction_id).title %>
+			<%= link_to Faction.find(caster.faction_id).title,faction_path(caster.faction_id) %>
+		</div>
+		<div class="span1">
+			<%= link_to 'Destroy', caster_path(caster), method: :delete, data: { confirm: 'Are you sure?'},"class"=> "btn btn-danger" %>
+		</div>
+		<div class="span1">
+			<%= link_to 'Edit', edit_caster_path(caster),"class"=> "btn btn-primary" %>
 		</div>
 </div>
 <% end %>
