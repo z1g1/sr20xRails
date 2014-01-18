@@ -1,11 +1,20 @@
 class MissionsController < ApplicationController
 
+	def index
+		@missions = Mission.all
+	end
+
+	def show
+		@mission = Mission.find(params[:id])
+	end
+
 	def new
+    authorize! :index, @user, :message => 'Not authorized to create new mission.'		
 		@mission = Mission.new
 	end
 	
 	def create
-    authorize! :index, @user, :message => 'Not authorized as an administrator.'		
+    authorize! :index, @user, :message => 'Not authorized to create new missions.'		
 	  @mission = Mission.new(mission_params)
 	  
 		if @mission.save
@@ -16,12 +25,12 @@ class MissionsController < ApplicationController
 	end
 	
 	def edit
-    authorize! :index, @user, :message => 'Not authorized as an administrator.'		
+    authorize! :index, @user, :message => 'Not authorized to edit missions.'		
 	  @mission = Mission.find(params[:id])
 	end
 
 	def update
-    authorize! :index, @user, :message => 'Not authorized as an administrator.'		
+    authorize! :index, @user, :message => 'Not authorized to update missions an administrator.'		
 		@mission = Mission.find(params[:id])
 	
 		if @mission.update_attributes(params[:mission].permit(:packet, :name, :victory, :specialRules, :tacticalTips, :map, :objective))
@@ -31,19 +40,11 @@ class MissionsController < ApplicationController
 	end		
 
 	def destroy
-    authorize! :index, @user, :message => 'Not authorized as an administrator.'		
+    authorize! :index, @user, :message => 'Not authorized to destroy missions.'		
 		@mission = Mission.find(params[:id])
 	  @mission.destroy
  
 	  redirect_to mission_path
-	end
-
-	def index
-		@missions = Mission.all
-	end
-
-	def show
-		@mission = Mission.find(params[:id])
 	end
 
 	private
