@@ -9,10 +9,12 @@ class FactionsController < ApplicationController
 	end
 	
 	def new
+    authorize! :index, @user, :message => 'Not authorized to create faction.'		
 		@faction = Faction.new
 	end
 
 	def create 
+    authorize! :index, @user, :message => 'Not authorized to create faction.'		
 	  @faction = Faction.new(faction_params)
  
 		if @faction.save
@@ -23,6 +25,7 @@ class FactionsController < ApplicationController
 	end
 
 	def destroy
+    authorize! :index, @user, :message => 'Not authorized to destroy faction.'		
 	  @faction = Faction.find(params[:id])
 	  @faction.destroy
  
@@ -30,10 +33,12 @@ class FactionsController < ApplicationController
 	end
 
 	def edit
+    authorize! :index, @user, :message => 'Not authorized to edit faction.'		
 		@faction = Faction.find(params[:id])
 	end
 
-	def update_attribute
+	def update
+    authorize! :index, @user, :message => 'Not authorized to update faction.'		
 	  @faction = Faction.find(params[:id])
  
 	  if @faction.update_attributes(params[:faction].permit(:logo, :system, :title ))

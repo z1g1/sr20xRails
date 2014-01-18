@@ -4,7 +4,7 @@ Mission Generator
 
 <div class="row">
 	<div class="span12">
-		Missions	
+		Missions >	
 	</div>
 </div>
 
@@ -20,7 +20,8 @@ Mission Generator
 		<div class="span2">
 			<h3><%= link_to mission.name,mission_path(mission.id) %></h3>
 		  <% if can? :update, mission %>
-				(<%= link_to "edit", edit_mission_path(mission) %>)
+				<%= link_to 'Edit', edit_mission_path(mission),"class" => "btn btn-success" %>
+				<%= link_to 'Destroy', mission_path(mission), method: :delete, data: { confirm: 'Are you sure?'},"class"=> "btn btn-danger" %>
 			<% end %>
 		</div>	
 		<div class="span8"><%= mission.specialRules.gsub('&lt;','<').gsub('&gt;','>').html_safe %></div>

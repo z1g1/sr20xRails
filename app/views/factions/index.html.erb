@@ -9,18 +9,22 @@ Faction Index
 
 <h3>Faction Index</h3>
 
-<div class="row">
-	<div class="span12">
-		<%= link_to "New Faction",new_faction_path,"class" => "btn btn-success" %>
+<% if can? :update, @factions %>
+	<div class="row">
+		<div class="span12">
+			<%= link_to "New Faction",new_faction_path,"class" => "btn btn-success" %>
+		</div>
 	</div>
-</div>
+<% end %> 
 
 <div class="row">
 	<div class="span4"><h4>Faction</h4></div>
 	<div class="span3"><h4>Recent Lists</h4></div>
 	<div class="span3"><h4>Total Lists</h4></div>
-	<div class="span1"><h4>Destory</h4></div>
-	<div class="span1"><h4>Edit</h4></div>
+	<% if can? :update, @factions %>
+		<div class="span1"><h4>Destory</h4></div>
+		<div class="span1"><h4>Edit</h4></div>
+	<% end %>
 </div>
 <% @factions.each do |faction| %>
 <div class="row">
@@ -32,11 +36,13 @@ Faction Index
 		</div>	
 		<div class="span3">Most Recent List</div>
 		<div class="span3">How Many Lists</div>
-		<div class="span1">
-			<%= link_to 'Destroy', faction_path(faction), method: :delete, data: { confirm: 'Are you sure?'},"class"=> "btn btn-danger" %>
-		</div>
-		<div class="span1">
-			<%= link_to 'Edit', edit_faction_path(faction),"class"=> "btn btn-primary" %>
-		</div>
+		<% if can? :update, @factions %>
+			<div class="span1">
+				<%= link_to 'Destroy', faction_path(faction), method: :delete, data: { confirm: 'Are you sure?'},"class"=> "btn btn-danger" %>
+			</div>
+			<div class="span1">
+				<%= link_to 'Edit', edit_faction_path(faction),"class"=> "btn btn-primary" %>
+			</div>
+		<% end %>
 </div>
 <% end %>

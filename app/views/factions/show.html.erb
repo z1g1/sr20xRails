@@ -9,6 +9,17 @@
 
 <h3><%= @faction.title %></h3>
 
+<% if can? :update, @factions %>
+	<div class="row">
+		<div class="span2">
+			<%= link_to "Edit Faction",edit_faction_path,"class" => "btn btn-success" %>
+		</div>
+		<div class="span2">
+			<%= link_to 'Destroy', faction_path(@faction), method: :delete, data: { confirm: 'Are you sure?'},"class"=> "btn btn-danger" %>
+		</div>
+	</div>
+<% end %> 
+
 <div class="row">
 	<div class="span2">
 		<img class="img-thumbnail" src="http://sr20x.com/static/img/<%= @faction.logo %>" alt="<%= @faction.title %>"></img>
