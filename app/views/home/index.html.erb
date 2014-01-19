@@ -29,7 +29,7 @@ Mission Generator
 		<% Mission.all.each_with_index do |mission, index| %>
 			MissionList.push(new Array());
 			MissionList[i].push("<%= mission.name %>");
-			MissionList[i].push('<%= mission.victory.html_safe %>');
+			MissionList[i].push("<%= mission.victory.html_safe %>");
 			MissionList[i].push("<%= mission.specialRules.html_safe  %>");
 			MissionList[i].push("<%= mission.tacticalTips.html_safe %>");
 			MissionList[i].push('<img src="'+ImageSource+'<%= mission.map %>"></img>');
