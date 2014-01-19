@@ -1,11 +1,12 @@
 class CastersController < ApplicationController
 	def index
-		@casters = Caster.order(faction_id: :asc).all
+		@casters = Caster.order(:faction_id,:title)
 	end
 
 	def show
 		@caster = Caster.find(params[:id])
 		@faction = Faction.find(@caster.faction_id)
+		@lists = List.where("caster_id = ?",@caster.id)
 	end
 
 	def new

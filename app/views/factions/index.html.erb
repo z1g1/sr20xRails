@@ -21,6 +21,7 @@ Faction Index
 <tr>
 	<th><h4>Faction</h4></th>
 	<th><h4>Total Lists</h4></th>
+	<th><h4>Recent List</h4></th>
 	<% if can? :update, @factions %>
 		<th><h4>Destory</h4></th>
 		<th><h4>Edit</h4></th>
@@ -44,6 +45,10 @@ Faction Index
 		<td>
 			<%= List.where("faction_id = ?", faction.id).count %>
 		</td>
+		<td>
+			<% List.where("faction_id = ?", faction.id).order("created_at DESC").limit(1).each do |list| %>
+				<%= link_to list.title,list_path(list.id) %> by <%= User.find(list.user_id).name %>
+			<% end %>
 		<% if can? :update, @factions %>
 			<td>
 				<%= link_to 'Destroy', faction_path(faction), method: :delete, data: { confirm: 'Are you sure?'},"class"=> "btn btn-danger" %>

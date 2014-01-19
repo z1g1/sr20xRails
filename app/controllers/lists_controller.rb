@@ -1,19 +1,6 @@
 class ListsController < ApplicationController
-	def new
-		@user = current_user
-		@list = List.new
-	end 
-
-	def create
-		@user = current_user
-		params[:list][:user_id]= @user.id 
-		@list = List.new(list_params)
-	  if @list.save
-			redirect_to @list
-		else
-			render 'new'
-		end
-	end
+  load_and_authorize_resource
+  skip_authorize_resource :only => :index
 
 	def index
 		@lists = List.all
@@ -26,7 +13,26 @@ class ListsController < ApplicationController
 		@author = User.find(@list.user_id)
 	end
 
+	def new
+    
+		@user = current_user
+		@list = List.new
+	end 
+
+	def create
+    
+		@user = current_user
+		params[:list][:user_id]= @user.id 
+		@list = List.new(list_params)
+	  if @list.save
+			redirect_to @list
+		else
+			render 'new'
+		end
+	end
+
 	def edit
+    
 		@list = List.find(params[:id])
 		@faction = Faction.find(@list.faction_id)
 		@caster = Caster.find(@list.caster_id)
@@ -34,6 +40,7 @@ class ListsController < ApplicationController
 	end
 
 	def update
+    
 		@list = List.find(params[:id])
  
 	  if @list.update_attributes(params[:list].permit(:title,:body,:size,:faction_id,:caster_id,:user_id))
@@ -43,6 +50,7 @@ class ListsController < ApplicationController
 	  end
 	end
 	def destroy
+    
 		@list = List.find(params[:id])
 	  @list.destroy
  

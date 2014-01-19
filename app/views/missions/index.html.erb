@@ -27,6 +27,7 @@ Mission Generator
 <div class="row">
 		<div class="span2">
 			<h3><%= link_to mission.name,mission_path(mission.id) %></h3>
+			<%= mission.packet %> Packet</br>
 		  <% if can? :update, mission %>
 				<%= link_to 'Edit', edit_mission_path(mission),"class" => "btn btn-primary" %>
 				<%= link_to 'Destroy', mission_path(mission), method: :delete, data: { confirm: 'Are you sure?'},"class"=> "btn btn-danger" %>

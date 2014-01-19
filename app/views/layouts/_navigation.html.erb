@@ -26,4 +26,9 @@
 		<li><%= link_to 'Missions', Mission %>
 		<li><%= link_to 'Factions', Faction %>
 		<li><%= link_to 'Casters', Caster %>
+		<li><%= link_to 'All Lists', List %>
+	<% if user_signed_in? %>	
+		<li><%= link_to 'Create List',new_list_path  %>
+		<li><%= link_to 'My Lists', user_path(current_user.id) %>
+	<% end %>
 </ul>

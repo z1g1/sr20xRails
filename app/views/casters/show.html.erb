@@ -17,25 +17,19 @@
 	</div>
 <% end %>
 
-<div class="row">
-	<div class="span4">
-		<h4>List Title</h4>
-	</div>
-	<div class="span4">
-		<h4>Created By</h4>
-	</div>
-	<div class="span4">
-		<h4>Created On</h4>
-	</div>
-</div>
-<div class="row">
-	<div class="span4">
-		Recent Lists
-	</div>
-	<div class="span4">
-		Created By
-	</div>
-	<div class="span4">
-		Created On
-	</div>
-</div>
+<table class="table table-striped">
+<tr>
+	<th><h4>List Title</h4></th>
+	<th><h4>Size</h4></th>
+	<th><h4>Created By</h4></th>
+	<th><h4>Created On</h4></th>
+</tr>
+<% @lists.each do |list| %>
+<tr>
+	<td><%= link_to list.title, list_path(list.id) %></td>
+	<td><%= list.size %></td>
+	<td><%= link_to User.find(list.user_id).name, user_path(list.user_id) %>  </td>
+	<td><%= list.created_at.strftime('%b %e %Y') %></td>
+</tr>
+<% end %>
+</table>

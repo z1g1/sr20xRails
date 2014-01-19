@@ -43,8 +43,8 @@
 		<%= List.where("caster_id = ?", caster.id).count %>
 	</td>
 	<td>
-		<% @RecentList = List.where("caster_id = ?", caster.id).each do |list| %>
-			<%= list.title %>
+		<% List.where("caster_id = ?", caster.id).limit(1).each do |list| %>
+			<%= link_to list.title,list_path(list.id) %> by <%= User.find(list.user_id).name %>
 		<% end %>
 	</td>
 </tr>

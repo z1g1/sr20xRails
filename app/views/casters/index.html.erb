@@ -16,29 +16,35 @@ Caster Index
 	</div>
 <% end %>
 
-<div class="row">
-	<div class="span5"><h4>Caster</h4></div>
-	<div class="span4"><h4>Faction</h4></div>
+<table class="table table-striped">
+<tr>
+	<th><h4>Caster</h4></th>
+	<th><h4>Faction</h4></th>
+	<th><h4>Total Lists</h4></th>
 	<% if can? :update, @casters %>
-		<div class="span1"><h4>Destroy</h4></div>
-		<div class="span1"><h4>Edit</h4></div>
+		<th><h4>Destroy</h4></th>
+		<th><h4>Edit</h4></th>
 	<% end %>
-</div>
+</tr>
 <% @casters.each do |caster| %>
-<div class="row">
-		<div class="span5">
+<tr>
+		<td>
 				<h5><%= link_to caster.title,caster_path(caster.id) %></h5>
-		</div>	
-		<div class="span4">
+		</td>	
+		<td>
 			<%= link_to Faction.find(caster.faction_id).title,faction_path(caster.faction_id) %>
-		</div>
+		</td>
+		<td>
+			<%= List.where("caster_id = ?", caster.id).count %>
+		</td>
 		<% if can? :update, @casters %>
-			<div class="span1">
+			<td>
 				<%= link_to 'Destroy', caster_path(caster), method: :delete, data: { confirm: 'Are you sure?'},"class"=> "btn btn-danger" %>
-			</div>
-			<div class="span1">
+			</td>
+			<td>
 				<%= link_to 'Edit', edit_caster_path(caster),"class"=> "btn btn-primary" %>
-			</div>
+			</td>
 		<% end %>
-</div>
+</tr>
 <% end %>
+</table>

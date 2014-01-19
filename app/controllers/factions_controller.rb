@@ -1,6 +1,6 @@
 class FactionsController < ApplicationController
 	def index
-		@factions = Faction.all 
+		@factions = Faction.all
 	end
 
 	def show
