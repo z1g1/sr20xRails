@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :mission do
     name "MyString"
-    packet "MyString"
+    packet nil
     victory "MyText"
     specialRules "MyText"
     tacticalTips "MyText"

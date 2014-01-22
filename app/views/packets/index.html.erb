@@ -1,0 +1,27 @@
+<% content_for :title do %>
+Mission Packets 
+<% end %>
+
+<% content_for :head do %>
+<script type="text/javascript">
+
+</script>
+<% end %>
+
+<div class="row">
+	<div class="span12">
+		Packets >	
+	</div>
+</div>
+
+<h3>List All Mission Packets </h3>
+
+<div class="row">
+	<div class="span12">
+        <ul>
+        <% @packets.each do |packet| %>
+            <li><%= link_to packet.title, packet_path(packet.id) %>
+	    <% end %>
+        </ul>	
+	</div>
+</div>

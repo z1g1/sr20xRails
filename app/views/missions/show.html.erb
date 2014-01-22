@@ -4,7 +4,7 @@
 
 <div class="row">
 	<div class="span12">
-		<%= link_to 'Missions', Mission %> >	<%= @mission.name %>
+		<%= link_to 'Missions', Mission %> > <%= link_to Packet.find(@mission.packet_id).title, packet_path(@mission.packet.id) %> >  <%= @mission.name %>
 	</div>
 </div>
 
@@ -16,7 +16,7 @@
 			<%= link_to "Edit Mission",edit_mission_path,"class" => "btn btn-success" %>
 		</div>
 		<div class="span2">
-			<%= link_to 'Destroy', faction_path(@mission), method: :delete, data: { confirm: 'Are you sure?'},"class"=> "btn btn-danger" %>
+			<%= link_to 'Destroy', mission_path(@mission), method: :delete, data: { confirm: 'Are you sure?'},"class"=> "btn btn-danger" %>
 		</div>
 	</div>
 <% end %>

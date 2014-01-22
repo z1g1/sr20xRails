@@ -1,7 +1,8 @@
 class MissionsController < ApplicationController
 
 	def index
-		@missions = Mission.where("created_at > '2013'")
+        @packets = Packet.all
+		@missions = Mission.where("'created_at' > '2013'")
 	end
 
 	def show
@@ -9,12 +10,12 @@ class MissionsController < ApplicationController
 	end
 
 	def new
-    authorize! :index, @user, :message => 'Not authorized to create new mission.'		
+        authorize! :index, @user, :message => 'Not authorized to create new mission.'		
 		@mission = Mission.new
 	end
 	
 	def create
-    authorize! :index, @user, :message => 'Not authorized to create new missions.'		
+      authorize! :index, @user, :message => 'Not authorized to create new missions.'		
 	  @mission = Mission.new(mission_params)
 	  
 		if @mission.save
@@ -25,29 +26,30 @@ class MissionsController < ApplicationController
 	end
 	
 	def edit
-    authorize! :index, @user, :message => 'Not authorized to edit missions.'		
+      authorize! :index, @user, :message => 'Not authorized to edit missions.'		
 	  @mission = Mission.find(params[:id])
 	end
 
 	def update
-    authorize! :index, @user, :message => 'Not authorized to update missions an administrator.'		
+        authorize! :index, @user, :message => 'Not authorized to update missions an administrator.'		
 		@mission = Mission.find(params[:id])
 	
-		if @mission.update_attributes(params[:mission].permit(:packet, :name, :victory, :specialRules, :tacticalTips, :map, :objective))
-	  else
+        if @mission.update_attributes(params[:mission].permit(:packet_id, :name, :victory, :specialRules, :tacticalTips, :map, :objective))
+            redirect_to @mission
+        else
 			render 'edit'
-	  end
+	    end
 	end		
 
 	def destroy
-    authorize! :index, @user, :message => 'Not authorized to destroy missions.'		
-		@mission = Mission.find(params[:id])
+      authorize! :index, @user, :message => 'Not authorized to destroy missions.'		
+	  @mission = Mission.find(params[:id])
 	  @mission.destroy
  
 	  redirect_to mission_path
 	end
 
-	private
+private
   def mission_params
     params.require(:mission).permit(:packet, :name, :victory, :specialRules, :tacticalTips, :map, :objective)
   end

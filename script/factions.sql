@@ -1,0 +1,12 @@
+INSERT INTO factions (title,system,logo,created_at,updated_at) VAlUES ('Cygnar','Warmachine','faction-logo-cygnar.png','2014-01-17','2014-01-17');
+INSERT INTO factions (title,system,logo,created_at,updated_at) VAlUES ('The Protectorate of Menoth','Warmachine','faction-logo-the-protectorate-of-menoth.png','2014-01-17','2014-01-17');
+INSERT INTO factions (title,system,logo,created_at,updated_at) VAlUES ('Khador','Warmachine','faction-logo-khador.png','2014-01-17','2014-01-17');
+INSERT INTO factions (title,system,logo,created_at,updated_at) VAlUES ('Cryx','Warmachine','faction-logo-cryx.png','2014-01-17','2014-01-17');
+INSERT INTO factions (title,system,logo,created_at,updated_at) VAlUES ('Retribution of Scyrah','Warmachine','faction-logo-the-retribution-of-scyrah.png','2014-01-17','2014-01-17');
+INSERT INTO factions (title,system,logo,created_at,updated_at) VAlUES ('Mercenaries','Warmachine','faction-logo-mercenaries.png','2014-01-17','2014-01-17');
+INSERT INTO factions (title,system,logo,created_at,updated_at) VAlUES ('Convergence of Cyriss','Warmachine','faction-logo-Convergence.png','2014-01-17','2014-01-17');
+INSERT INTO factions (title,system,logo,created_at,updated_at) VAlUES ('Trollbloods','Hordes','faction-logo-trollbloods.png','2014-01-17','2014-01-17');
+INSERT INTO factions (title,system,logo,created_at,updated_at) VAlUES ('Circle Oboros','Hordes','faction-logo-circle-orboros.png','2014-01-17','2014-01-17');
+INSERT INTO factions (title,system,logo,created_at,updated_at) VAlUES ('Skorne','Hordes','faction-logo-skorne.png','2014-01-17','2014-01-17');
+INSERT INTO factions (title,system,logo,created_at,updated_at) VAlUES ('Legion','Hordes','faction-logo-legion-of-everblight.png','2014-01-17','2014-01-17');
+INSERT INTO factions (title,system,logo,created_at,updated_at) VAlUES ('Minions','Hordes','faction-logo-minions.png','2014-01-17','2014-01-17');

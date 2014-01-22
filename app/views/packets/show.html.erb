@@ -1,28 +1,14 @@
 <% content_for :title do %>
-Mission Generator
-<% end %>
-
-<% content_for :head do %>
-<script type="text/javascript">
-
-</script>
+Missions from <%= @packet.title %>
 <% end %>
 
 <div class="row">
 	<div class="span12">
-		Missions >	
+		<%= link_to 'Missions', Mission %> > <%= @packet.title %> Packet
 	</div>
 </div>
 
-<h3>List All Missions </h3>
-
-<% if can? :update, @missions %>
-	<div class="row">
-		<div class="span12">
-			<%= link_to "New Mission",new_mission_path,"class" => "btn btn-success" %>
-		</div>
-	</div>
-<% end %>
+<h3>List All Missions in <%= @packet.title %> Packet</h3>
 
 <table class="table table-striped">
 <tr>

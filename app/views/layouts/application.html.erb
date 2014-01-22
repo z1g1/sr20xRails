@@ -2,8 +2,8 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "sr20x.com" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Rails3 Bootstrap Devise Cancan" %>">
+    <title><%= content_for?(:title) ? yield(:title) : "sr20x" %></title>
+    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "sr20x.com" %>">
     <%= stylesheet_link_tag "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
@@ -27,6 +27,45 @@
             </div>
           </div>
           <footer>
+            <hr>
+            <div class="row">
+            <div class="span12 muted">
+            <ul class="inline">
+                <li><a href="http://privateerpress.com">Privateer Press</a></li>
+                <li><%= link_to 'Legal', page_path('legal') %></li>
+                <li><a href="http://z1g1.net">z1g1.net</a>
+                <li>SR Version 2014 1/21/2014</li>
+  <% if user_signed_in? %>
+    <li>
+    <%= link_to 'Logout', destroy_user_session_path, :method=>'delete' %>
+    </li>
+  <% else %>
+    <li>
+    <%= link_to 'Login', new_user_session_path %>
+    </li>
+  <% end %>
+  <% if user_signed_in? %>
+    <li>
+    <%= link_to 'Edit account', edit_user_registration_path %>
+    </li>
+    <% if current_user.has_role? :admin %>
+      <li>
+      <%= link_to 'Admin', users_path %>
+      </li>
+    <% end %>
+  <% else %>
+    <li>
+    <%= link_to 'Sign up', new_user_registration_path %>
+    </li>
+  <% end %>
+            </ul>
+            </div>
+            </div>
+            <div class="row">
+                <div class="span12 muted">
+                    Contents and Game Rules ©2001–2014 Privateer Press, Inc. All Rights Reserved. Privateer Press®, Iron Kingdoms, WARMACHINE®, Cryx, Convergence of Cyriss, Convergence, Cygnar, Khador, Protectorate of Menoth, Protectorate, Retribution of Scyrah, Retribution, HORDES, Circle Orboros, Circle, Legion of Everblight, Legion, Skorne, Trollbloods, Trollblood, warcaster, warjack, warbeast, Steamroller, Masters, and all associated logos and slogans are trademarks of Privateer Press, Inc. 
+                </div>
+            </div>
           </footer>
         </div>
       </div> <!--! end of .container -->
