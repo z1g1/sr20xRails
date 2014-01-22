@@ -8,7 +8,7 @@ Mission Generator
 	{
 		var MissionList = LoadMissionArray()
 
-		document.getElementById("MissionName").innerHTML=MissionList[MissionNumber][0]; 
+		document.getElementById("MissionName").innerHTML=MissionList[MissionNumber][0]+" ("+MissionList[MissionNumber][6]+")"; 
 		document.getElementById("MissionVictoryConditions").innerHTML=MissionList[MissionNumber][1]; 
 		document.getElementById("MissionSpecialRules").innerHTML=MissionList[MissionNumber][2]; 
 		document.getElementById("MissionTacticalTips").innerHTML=MissionList[MissionNumber][3]; 
@@ -34,6 +34,7 @@ Mission Generator
 			MissionList[i].push("<%= mission.tacticalTips.html_safe %>");
 			MissionList[i].push('<img src="'+ImageSource+'<%= mission.map %>"></img>');
 			MissionList[i].push('<img src="'+ImageSource+'<%= mission.objective %>"></img>');
+			MissionList[i].push("<%= Packet.find(mission.packet_id).title %>");
 
 			i++
 		<% end %>
@@ -97,6 +98,12 @@ Mission Generator
 				<option value="11">Into the Breach</option>
 				<option value="12">Fire Support</option>
 				<option value="13">Deathmatch (Hardcore)</option>
+				<option value="14">Destruction (Masters)</option>
+				<option value="15">Balance of Power (Masters)</option>
+				<option value="16">Close Quarters (Masters)</option>
+				<option value="17">Incursion (Masters)</option>
+				<option value="18">Outflank (Masters)</option>
+				<option value="19">Fire Support (Masters)</option>
 			</select>
 			<a id="ToggleGenerate" onClick="ToggelGenerate()">Roll Random Mission</a>
 		</div>
