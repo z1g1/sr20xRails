@@ -10,6 +10,9 @@
 # http://github.com/RailsApps/rails-composer/issues
 #----------------------------------------------------------------------------
 
+# AWS Beastalk
+.elasticbeanstalk/*
+
 # bundler state
 /.bundle
 /vendor/bundle/
@@ -75,3 +78,4 @@ pickle-email-*.html
 
 # Ignore application configuration
 /config/application.yml
+.elasticbeanstalk/
